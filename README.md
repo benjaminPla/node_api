@@ -23,3 +23,5 @@ this is a todo list in readme, it's not ok to put it here but it's only for me, 
 - fk
 - soft delete
 - jwt
+- test
+- refresh token

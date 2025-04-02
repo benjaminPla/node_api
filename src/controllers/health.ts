@@ -1,7 +1,8 @@
-import { Request, Response, RequestHandler } from "express";
+import { Request, Response } from "express";
 
-const health: RequestHandler = (_req: Request, res: Response): void => {
+const health = (_req: Request, res: Response) => {
   res.sendStatus(200);
+  return;
 };
 
 export default health;

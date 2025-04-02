@@ -1,14 +1,19 @@
 import bcrypt from "bcrypt";
 import { getEnvVar } from "../../helpers";
-import { Request, Response, RequestHandler } from "express";
+import { Request, Response } from "express";
 import User from "../../models/user";
 
-const userCreate: RequestHandler = async (
-  req: Request,
-  res: Response,
-): Promise<void> => {
+const userCreate = async (req: Request, res: Response) => {
   try {
+    if (!req.body) {
+      res.sendStatus(400);
+      return;
+    }
     const { email, password } = req.body;
+    if (!email || !password) {
+      res.sendStatus(400);
+      return;
+    }
 
     const hashedPassword = await bcrypt.hash(
       password,

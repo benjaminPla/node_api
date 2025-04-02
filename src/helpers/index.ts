@@ -1,4 +1,6 @@
+import { Request } from "express";
 import { Sequelize } from "sequelize";
+import { JwtPayload } from "jsonwebtoken";
 
 export const getEnvVar = (envVar: string): string => {
   const value = process.env[envVar];
@@ -26,3 +28,7 @@ export const checkDbConnection = async () => {
     throw new Error(`db connection failed: ${error}`);
   }
 };
+
+export interface IRequestWithUser extends Request {
+  user?: JwtPayload | string;
+}

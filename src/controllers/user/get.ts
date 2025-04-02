@@ -1,10 +1,7 @@
-import { Request, Response, RequestHandler } from "express";
+import { Request, Response } from "express";
 import User from "../../models/user";
 
-const userGet: RequestHandler = async (
-  _req: Request,
-  res: Response,
-): Promise<void> => {
+const userGet = async (_req: Request, res: Response) => {
   try {
     const users = await User.findAll({
       attributes: { exclude: ["password"] },
