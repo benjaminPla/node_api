@@ -1,12 +1,25 @@
 import "dotenv/config";
-import express from "express";
-import { getEnvVar } from "./helpers";
+import express, { Express } from "express";
+import { checkDbConnection, getEnvVar } from "./helpers";
 import router from "./routes";
 
-const app = express();
+const app: Express = express();
 
 app.use(express.json());
 app.use(router);
 
-const port = getEnvVar("PORT");
-app.listen(port, () => `api running on port ${port}`);
+const startServer = async () => {
+  try {
+    await checkDbConnection();
+
+    const port = getEnvVar("PORT");
+    app.listen(port, () => {
+      console.log(`server running on port ${port}`);
+    });
+  } catch (error) {
+    console.error(`failed to start server: ${error}`);
+    process.exit(1);
+  }
+};
+
+startServer();
