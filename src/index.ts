@@ -5,10 +5,10 @@ import {
   rateLimiter,
   speedLimiter,
 } from "./helpers";
-import express, { Express } from "express";
+import express from "express";
 import router from "./routes";
 
-const app: Express = express();
+const app = express();
 
 app.use(express.json());
 app.use(rateLimiter);

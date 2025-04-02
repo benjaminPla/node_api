@@ -3,7 +3,7 @@ import { getEnvVar } from "../../helpers";
 import { Request, Response } from "express";
 import User from "../../models/user";
 
-const userCreate = async (req: Request, res: Response) => {
+const userCreate = async (req: Request, res: Response): Promise<any> => {
   try {
     const { email, password } = req.body;
 

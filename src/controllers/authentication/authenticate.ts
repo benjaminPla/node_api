@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
 import User, { IUser } from "../../models/user";
 
-const authenticate = async (req: Request, res: Response) => {
+const authenticate = async (req: Request, res: Response): Promise<any> => {
   try {
     const { email, password } = req.body;
 
