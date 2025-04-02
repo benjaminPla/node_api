@@ -1,8 +1,10 @@
 import { Request, Response, RequestHandler } from "express";
+import User from "../../models/user";
 
 export const userGet: RequestHandler = async (
   _req: Request,
   res: Response,
 ): Promise<void> => {
-  res.sendStatus(200);
+  const users = await User.findAll();
+  res.status(200).send(users);
 };

@@ -1,8 +1,10 @@
 import { Request, Response, RequestHandler } from "express";
+import User from "../../models/user";
 
 export const userCreate: RequestHandler = async (
-  _req: Request,
+  req: Request,
   res: Response,
 ): Promise<void> => {
-  res.sendStatus(201);
+  const user = await User.create(req.body);
+  res.status(201).send(user);
 };
