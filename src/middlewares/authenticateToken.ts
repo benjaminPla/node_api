@@ -2,7 +2,11 @@ import { getEnvVar, IRequestWithUser } from "../helpers";
 import jwt from "jsonwebtoken";
 import { NextFunction, Response } from "express";
 
-const setToken = (req: IRequestWithUser, res: Response, next: NextFunction) => {
+const authenticateToken = (
+  req: IRequestWithUser,
+  res: Response,
+  next: NextFunction,
+) => {
   try {
     const token = req.headers.authorization;
     if (!token) {
@@ -32,4 +36,4 @@ const setToken = (req: IRequestWithUser, res: Response, next: NextFunction) => {
   }
 };
 
-export default setToken;
+export default authenticateToken;

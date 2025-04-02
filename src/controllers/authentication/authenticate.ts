@@ -33,7 +33,7 @@ const authenticate = async (req: Request, res: Response) => {
     const token = jwt.sign(
       { email, role: user.role },
       getEnvVar("JWT_SECRET"),
-      { expiresIn: "1m" },
+      { expiresIn: parseInt(getEnvVar("JWT_EXPIRES_IN_SECONDS"), 10) },
     );
 
     res.status(200).send({ token });

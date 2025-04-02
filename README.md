@@ -16,12 +16,12 @@ this is a todo list in readme, it's not ok to put it here but it's only for me, 
 
 - saml, oauth
 - docker
-- roles
-- rate limiter + slown down
+<!-- - roles -->
+<!-- - rate limiter + slown down -->
 - middlewares
 - cache
 - fk
 - soft delete
-- jwt
+<!-- - jwt -->
 - test
 - refresh token

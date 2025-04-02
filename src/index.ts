@@ -1,11 +1,18 @@
 import "dotenv/config";
+import {
+  checkDbConnection,
+  getEnvVar,
+  rateLimiter,
+  speedLimiter,
+} from "./helpers";
 import express, { Express } from "express";
-import { checkDbConnection, getEnvVar } from "./helpers";
 import router from "./routes";
 
 const app: Express = express();
 
 app.use(express.json());
+app.use(rateLimiter);
+app.use(speedLimiter);
 app.use(router);
 
 const startServer = async () => {
