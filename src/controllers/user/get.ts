@@ -7,10 +7,10 @@ const userGet = async (_req: Request, res: Response) => {
       attributes: { exclude: ["password"] },
     });
 
-    res.status(200).send(users);
+    return res.status(200).send(users);
   } catch (error: any) {
     console.error(`error \`userCreate\`: ${error} `);
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 };
 

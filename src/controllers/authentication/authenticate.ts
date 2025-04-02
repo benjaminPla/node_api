@@ -12,14 +12,12 @@ const authenticate = async (req: Request, res: Response) => {
       where: { email },
     });
     if (!user) {
-      res.sendStatus(404);
-      return;
+      return res.sendStatus(404);
     }
 
     const isValidPassword = await bcrypt.compare(password, user.password);
     if (!isValidPassword) {
-      res.sendStatus(401);
-      return;
+      return res.sendStatus(401);
     }
 
     const token = jwt.sign(
@@ -28,14 +26,13 @@ const authenticate = async (req: Request, res: Response) => {
       { expiresIn: parseInt(getEnvVar("JWT_EXPIRES_MS"), 10) },
     );
 
-    res.status(200).send({ token });
+    return res.status(200).send({ token });
   } catch (error: any) {
     console.error(`error \`userCreate\`: ${error} `);
     if (error.name === "SequelizeUniqueConstraintError") {
-      res.sendStatus(409);
-      return;
+      return res.sendStatus(409);
     }
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 };
 

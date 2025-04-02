@@ -14,14 +14,13 @@ const userCreate = async (req: Request, res: Response) => {
 
     const user = await User.create({ email, password: hashedPassword });
 
-    res.status(201).send(user);
+    return res.status(201).send(user);
   } catch (error: any) {
     console.error(`error \`userCreate\`: ${error} `);
     if (error.name === "SequelizeUniqueConstraintError") {
-      res.sendStatus(409);
-      return;
+      return res.sendStatus(409);
     }
-    res.sendStatus(500);
+    return res.sendStatus(500);
   }
 };
 
