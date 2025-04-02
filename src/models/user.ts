@@ -1,26 +1,43 @@
 import bcrypt from "bcrypt";
-import { DataTypes } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import { getEnvVar, sequelize } from "../helpers";
 
-const User = sequelize.define(
-  "User",
+export interface IUser {
+  email: string;
+  id: number;
+  password: string;
+  role: string;
+}
+
+class User extends Model implements IUser {
+  id!: number;
+  email!: string;
+  password!: string;
+  role!: "admin" | "client";
+}
+
+User.init(
   {
     email: {
-      allowNull: false,
       type: DataTypes.STRING,
+      allowNull: false,
       unique: true,
-      validate: {
-        isEmail: true,
-      },
+      validate: { isEmail: true },
     },
     password: {
-      allowNull: false,
       type: DataTypes.STRING,
+      allowNull: false,
+    },
+    role: {
+      type: DataTypes.ENUM("admin", "client"),
+      allowNull: false,
+      defaultValue: "client",
     },
   },
   {
-    timestamps: true,
+    sequelize,
     tableName: "users",
+    timestamps: true,
   },
 );
 
@@ -39,6 +56,7 @@ const User = sequelize.define(
       await User.create({
         email,
         password: hashedPassword,
+        role: "admin",
       });
       console.log("user table populaton succeeded");
     }

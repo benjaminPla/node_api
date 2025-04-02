@@ -3,7 +3,7 @@ import { getEnvVar } from "../../helpers";
 import { Request, Response, RequestHandler } from "express";
 import User from "../../models/user";
 
-export const userCreate: RequestHandler = async (
+const userCreate: RequestHandler = async (
   req: Request,
   res: Response,
 ): Promise<void> => {
@@ -27,3 +27,5 @@ export const userCreate: RequestHandler = async (
     res.sendStatus(500);
   }
 };
+
+export default userCreate;

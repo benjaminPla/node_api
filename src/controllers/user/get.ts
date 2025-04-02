@@ -1,7 +1,7 @@
 import { Request, Response, RequestHandler } from "express";
 import User from "../../models/user";
 
-export const userGet: RequestHandler = async (
+const userGet: RequestHandler = async (
   _req: Request,
   res: Response,
 ): Promise<void> => {
@@ -16,3 +16,5 @@ export const userGet: RequestHandler = async (
     res.sendStatus(500);
   }
 };
+
+export default userGet;
