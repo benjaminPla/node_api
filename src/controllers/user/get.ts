@@ -5,6 +5,8 @@ export const userGet: RequestHandler = async (
   _req: Request,
   res: Response,
 ): Promise<void> => {
-  const users = await User.findAll();
+  const users = await User.findAll({
+    attributes: { exclude: ["password"] },
+  });
   res.status(200).send(users);
 };

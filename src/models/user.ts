@@ -1,4 +1,6 @@
+import bcrypt from "bcrypt";
 import { DataTypes } from "sequelize";
+import { getEnvVar } from "../helpers";
 import { sequelize } from "../helpers";
 
 const User = sequelize.define(
@@ -28,10 +30,15 @@ const User = sequelize.define(
     await User.sync({ force: true });
     console.log("user table synced (forced)");
 
-    // env var + hash pass
+    const email = getEnvVar("ADMIN_EMAIL");
+    const password = getEnvVar("ADMIN_PASSWORD");
+    const hashedPassword = await bcrypt.hash(
+      password,
+      parseInt(getEnvVar("BCRYPT_SALT"), 10),
+    );
     await User.create({
-      email: "rindus@email.com",
-      password: "rindus12345",
+      email,
+      password: hashedPassword,
     });
     console.log("user table populaton succeeded");
   } catch (error) {
