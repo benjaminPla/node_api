@@ -1,7 +1,7 @@
 import "dotenv/config";
 import express from "express";
-import { getEnvVar } from "./src/helpers";
-import router from "./src/routes";
+import { getEnvVar } from "./helpers";
+import router from "./routes";
 
 const app = express();
 
