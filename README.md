@@ -25,3 +25,5 @@ this is a todo list in readme, it's not ok to put it here but it's only for me, 
 <!-- - jwt -->
 - test
 - refresh token
+- sessionId
+- role middleware

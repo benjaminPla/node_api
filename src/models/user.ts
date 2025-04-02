@@ -61,7 +61,7 @@ User.init(
       console.log("user table populaton succeeded");
     }
   } catch (error) {
-    console.error(`user table sync/populate failed: ${error}`);
+    console.error(`failed to sync/populate users table: ${error}`);
     process.exit(1);
   }
 })();

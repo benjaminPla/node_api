@@ -1,5 +1,6 @@
 import authenticate from "../controllers/authentication/authenticate";
 import authenticateToken from "../middlewares/authenticateToken";
+import checkReq from "../middlewares/checkReq";
 import express from "express";
 import health from "../controllers/health";
 import userCreate from "../controllers/user/create";
@@ -9,7 +10,16 @@ const router = express.Router();
 
 router.get("/health", health);
 router.get("/user", userGet);
-router.post("/authenticate", authenticate);
-router.post("/user/create", authenticateToken, userCreate);
+router.post(
+  "/authenticate",
+  checkReq(["body", "body.email", "body.password"]),
+  authenticate,
+);
+router.post(
+  "/user/create",
+  authenticateToken,
+  checkReq(["body", "body.email", "body.password"]),
+  userCreate,
+);
 
 export default router;

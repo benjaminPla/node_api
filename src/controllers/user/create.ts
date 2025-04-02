@@ -5,15 +5,7 @@ import User from "../../models/user";
 
 const userCreate = async (req: Request, res: Response) => {
   try {
-    if (!req.body) {
-      res.sendStatus(400);
-      return;
-    }
     const { email, password } = req.body;
-    if (!email || !password) {
-      res.sendStatus(400);
-      return;
-    }
 
     const hashedPassword = await bcrypt.hash(
       password,

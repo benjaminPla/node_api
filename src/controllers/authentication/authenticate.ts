@@ -6,15 +6,7 @@ import User, { IUser } from "../../models/user";
 
 const authenticate = async (req: Request, res: Response) => {
   try {
-    if (!req.body) {
-      res.sendStatus(400);
-      return;
-    }
     const { email, password } = req.body;
-    if (!email || !password) {
-      res.sendStatus(400);
-      return;
-    }
 
     const user: IUser | null = await User.findOne({
       where: { email },
@@ -33,7 +25,7 @@ const authenticate = async (req: Request, res: Response) => {
     const token = jwt.sign(
       { email, role: user.role },
       getEnvVar("JWT_SECRET"),
-      { expiresIn: parseInt(getEnvVar("JWT_EXPIRES_IN_SECONDS"), 10) },
+      { expiresIn: parseInt(getEnvVar("JWT_EXPIRES_MS"), 10) },
     );
 
     res.status(200).send({ token });

@@ -21,15 +21,15 @@ const authenticateToken = (
     next();
   } catch (error: any) {
     if (error instanceof jwt.JsonWebTokenError) {
-      console.error(`invalid token: ${error}`);
+      console.error(`error \`authenticateToken\` invalid token: ${error}`);
       res.sendStatus(401);
       return;
     } else if (error instanceof jwt.TokenExpiredError) {
-      console.error(`expired token: ${error}`);
+      console.error(`error \`authenticateToken\` expired token: ${error}`);
       res.sendStatus(401);
       return;
     } else {
-      console.error(`error \`setToken\`: ${error}`);
+      console.error(`error \`authenticateToken\`: ${error}`);
       res.sendStatus(500);
       return;
     }
