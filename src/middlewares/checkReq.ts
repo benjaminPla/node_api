@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 const checkReq =
   (requiredProps: string[]) =>
-  (req: Request, res: Response, next: NextFunction) => {
+  (req: Request, res: Response, next: NextFunction): any => {
     const missingProps: string[] = [];
 
     requiredProps.forEach((prop) => {
@@ -22,8 +22,7 @@ const checkReq =
       console.error(
         `error \`checkReq\` missingProps: ${missingProps.toString()}`,
       );
-      res.sendStatus(400);
-      return;
+      return res.sendStatus(400);
     }
 
     next();

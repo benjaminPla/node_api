@@ -31,10 +31,6 @@ export const checkDbConnection = async () => {
   }
 };
 
-export interface IRequestWithUser extends Request {
-  user?: JwtPayload | string;
-}
-
 export const rateLimiter = rateLimit({
   legacyHeaders: false,
   max: parseInt(getEnvVar("RATE_LIMITER_MAX"), 10),

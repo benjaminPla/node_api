@@ -1,5 +1,6 @@
 import authenticate from "../controllers/authentication/authenticate";
 import authenticateToken from "../middlewares/authenticateToken";
+import checkAdmin from "../middlewares/checkAdmin";
 import checkReq from "../middlewares/checkReq";
 import express from "express";
 import health from "../controllers/health";
@@ -18,6 +19,7 @@ router.post(
 router.post(
   "/user/create",
   authenticateToken,
+  checkAdmin,
   checkReq(["body", "body.email", "body.password"]),
   userCreate,
 );

@@ -1,12 +1,9 @@
-import { getEnvVar, IRequestWithUser } from "../helpers";
+import { getEnvVar } from "../helpers";
 import jwt from "jsonwebtoken";
-import { NextFunction, Response } from "express";
+import { NextFunction, Response, Request } from "express";
+import { JwtPayload } from "../extended";
 
-const authenticateToken = (
-  req: IRequestWithUser,
-  res: Response,
-  next: NextFunction,
-) => {
+const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
   try {
     const token = req.headers.authorization;
     if (!token) {
@@ -16,7 +13,7 @@ const authenticateToken = (
 
     const decoded = jwt.verify(token, getEnvVar("JWT_SECRET"));
 
-    req.user = decoded;
+    req.user = decoded as JwtPayload;
 
     next();
   } catch (error: any) {
