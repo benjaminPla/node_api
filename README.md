@@ -18,12 +18,13 @@ this is a todo list in readme, it's not ok to put it here but it's only for me, 
 - docker
 <!-- - roles -->
 <!-- - rate limiter + slown down -->
-- middlewares
+<!-- - middlewares -->
 - cache
-- fk
+<!-- - fk -->
 - soft delete
 <!-- - jwt -->
 - test
 - refresh token
 - sessionId
-- role middleware
+<!-- - role middleware -->
+- modulize helpers

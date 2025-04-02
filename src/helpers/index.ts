@@ -1,6 +1,4 @@
-import { JwtPayload } from "jsonwebtoken";
 import rateLimit from "express-rate-limit";
-import { Request } from "express";
 import { Sequelize } from "sequelize";
 import { slowDown } from "express-slow-down";
 
@@ -44,3 +42,4 @@ export const speedLimiter = slowDown({
   delayMs: (hits) => hits * parseInt(getEnvVar("SPEED_LIMITER_DELAY_MS"), 10),
   windowMs: parseInt(getEnvVar("SPEED_LIMITER_WINDOW_MS"), 10),
 });
+

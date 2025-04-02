@@ -5,6 +5,7 @@ import {
   rateLimiter,
   speedLimiter,
 } from "./helpers";
+import { syncAndPopulateDb } from "./helpers/syncAndPopulateDb";
 import express from "express";
 import router from "./routes";
 
@@ -18,6 +19,7 @@ app.use(router);
 const startServer = async () => {
   try {
     await checkDbConnection();
+    await syncAndPopulateDb();
 
     const port = getEnvVar("PORT");
     app.listen(port, () => {
