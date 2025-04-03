@@ -1,16 +1,16 @@
 import { DataTypes, Model } from "sequelize";
 import { sequelize } from "../helpers";
 
-export interface IUser {
+interface IUser {
   email: string;
-  id: number;
+  id: string;
   password: string;
   role: string;
 }
 
 class User extends Model implements IUser {
-  id!: number;
   email!: string;
+  id!: string;
   password!: string;
   role!: "admin" | "client";
 }
@@ -22,6 +22,12 @@ User.init(
       allowNull: false,
       unique: true,
       validate: { isEmail: true },
+    },
+    id: {
+      type: DataTypes.UUID,
+      allowNull: false,
+      primaryKey: true,
+      defaultValue: DataTypes.UUIDV4,
     },
     password: {
       type: DataTypes.STRING,

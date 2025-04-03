@@ -2,15 +2,15 @@
 
 ## Overview
 
-This API is built with Node.js, Express, PostgreSQL, Sequelize, and Redis. It includes:
+this api is built with node.js, express, postgresql, sequelize, and redis. it includes:
 
-- User management with roles (admin, client).
-- Authentication via JWT and bcrypt for password hashing.
-- Rate limiting and basic security measures to mitigate bot attacks.
-- Fully documented and tested using Postman.
-- Dockerized with Docker and Docker Compose, ready to run with PostgreSQL and Redis containers.
+- user management with roles (admin, client).
+- authentication via jwt and bcrypt for password hashing.
+- rate limiting and basic security measures to mitigate bot attacks.
+- fully documented and tested using postman.
+- dockerized with docker and docker compose, ready to run with postgresql and redis containers.
 
-Aimed to showcase my skills with minimal code (limited time!).
+aimed to showcase my skills with minimal code (limited time!).
 
 ## structure
 
@@ -61,6 +61,29 @@ Aimed to showcase my skills with minimal code (limited time!).
 
 ## how to run it
 
+to get started, you'll need to set up a .env file for environment variables. here’s an example of what your .env file should look like (feel free to customize it):
+
+```
+ADMIN_EMAIL=rindus@email.com
+ADMIN_PASSWORD=rindus12345
+BCRYPT_SALT=10
+DB_HOST=localhost
+DB_NAME=rindus
+DB_PASSWORD=rindus12345
+DB_PORT=5432
+DB_USERNAME=rindus
+ENV='dev'
+JWT_EXPIRES_MS=900000
+JWT_SECRET=rindus12345
+PORT=3000
+RATE_LIMITER_MAX=10
+RATE_LIMITER_WINDOW_MS=900000
+REDIS_EX_S=60
+SPEED_LIMITER_DELAY_AFTER=5
+SPEED_LIMITER_DELAY_MS=100
+SPEED_LIMITER_WINDOW_MS=900000
+```
+
 ### docker
 
 wip
@@ -73,6 +96,8 @@ wip
 4. test the api using any http client, follow postman documentation
 
 # notes
+
+remove syncDB (edge case where empty db and break fk)
 
 ```
 docker run -d \
@@ -97,7 +122,7 @@ docker run -d \
 - [x] cache
 - [x] fk
 - [ ] soft delete
-- [ ] jwt
+- [x] jwt
 - [ ] test
 - [ ] refresh token
 - [ ] sessionId

@@ -10,7 +10,7 @@ const postGet = async (_req: Request, res: Response): Promise<any> => {
       return res.status(200).send(JSON.parse(cachedPosts));
     }
 
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({ raw: true });
     if (!posts.length) {
       return res.sendStatus(404);
     }

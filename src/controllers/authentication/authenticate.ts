@@ -2,13 +2,13 @@ import bcrypt from "bcrypt";
 import { getEnvVar } from "../../helpers";
 import jwt from "jsonwebtoken";
 import { Request, Response } from "express";
-import User, { IUser } from "../../models/user";
+import User from "../../models/user";
 
 const authenticate = async (req: Request, res: Response): Promise<any> => {
   try {
     const { email, password } = req.body;
 
-    const user: IUser | null = await User.findOne({
+    const user = await User.findOne({
       where: { email },
     });
     if (!user) {
@@ -21,7 +21,7 @@ const authenticate = async (req: Request, res: Response): Promise<any> => {
     }
 
     const token = jwt.sign(
-      { email, role: user.role },
+      { email, id: user.id, role: user.role },
       getEnvVar("JWT_SECRET"),
       { expiresIn: parseInt(getEnvVar("JWT_EXPIRES_MS"), 10) },
     );
