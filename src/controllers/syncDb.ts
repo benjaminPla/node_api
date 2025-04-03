@@ -1,11 +1,11 @@
 import bcrypt from "bcrypt";
-import fs from "fs";
-import { getEnvVar, sequelize } from "./";
-import path from "path";
+import { getEnvVar } from "../helpers";
+import { getRedisClient } from "../helpers";
 import Post from "../models/post";
+import { Request, Response } from "express";
 import User from "../models/user";
 
-export const syncAndPopulateDb = async () => {
+const syncDb = async (_req: Request, res: Response): Promise<any> => {
   try {
     if (getEnvVar("ENV") === "dev") {
       await User.sync({ force: true });
@@ -27,13 +27,16 @@ export const syncAndPopulateDb = async () => {
       await Post.sync({ force: true });
       console.log("posts table synced (forced)");
 
-      const postsFilePath = path.resolve(__dirname, "../../posts.sql");
-      const posts = fs.readFileSync(postsFilePath, "utf-8");
-      await sequelize.query(posts);
-      console.log("posts table population succeeded");
+      const redis = await getRedisClient();
+      redis.del("posts");
+      console.log("posts cache deleted");
     }
+
+    return res.sendStatus(200);
   } catch (error) {
     console.error(`failed to sync/populate tables: ${error}`);
-    process.exit(1);
+    return res.sendStatus(500);
   }
 };
+
+export default syncDb;

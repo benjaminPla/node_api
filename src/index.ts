@@ -8,7 +8,6 @@ import {
 import express from "express";
 import helmet from "helmet";
 import router from "./routes";
-import { syncAndPopulateDb } from "./helpers/syncAndPopulateDb";
 
 const app = express();
 
@@ -21,7 +20,6 @@ app.use(router);
 const startServer = async () => {
   try {
     await checkDbConnection();
-    await syncAndPopulateDb();
 
     const port = getEnvVar("PORT");
     app.listen(port, () => {
