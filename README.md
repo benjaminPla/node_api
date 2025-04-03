@@ -99,6 +99,8 @@ wip
 
 remove syncDB (edge case where empty db and break fk)
 
+https://documenter.getpostman.com/view/16085603/2sB2cSiQ4r
+
 ```
 docker run -d \
   --name postgres-rindus \
@@ -127,6 +129,6 @@ docker run -d \
 - [ ] refresh token
 - [ ] sessionId
 - [x] role middleware
-- [ ] modularize helpers
 - [ ] sequelize pool
 - [x] optimistic locking
+- [x] documentation

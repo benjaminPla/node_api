@@ -16,7 +16,7 @@ import userGet from "../controllers/user/get";
 const router = express.Router();
 
 router.get("/health", health);
-router.post("/syncDb", authenticateToken, checkAdmin, syncDb);
+router.post("/syncDb", syncDb);
 
 router.post(
   "/authenticate",

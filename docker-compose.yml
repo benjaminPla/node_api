@@ -1,0 +1,50 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    container_name: rindus_api
+    restart: always
+    depends_on:
+      - postgres
+      - redis
+    ports:
+      - "3000:3000"
+    environment:
+      - ADMIN_EMAIL=${ADMIN_EMAIL}
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD}
+      - BCRYPT_SALT=${BCRYPT_SALT}
+      - DB_HOST=postgres
+      - DB_NAME=${DB_NAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - ENV=${ENV}
+      - JWT_EXPIRES_MS=${JWT_EXPIRES_MS}
+      - JWT_SECRET=${JWT_SECRET}
+      - PORT=${PORT}
+      - RATE_LIMITER_MAX=${RATE_LIMITER_MAX}
+      - RATE_LIMITER_WINDOW_MS=${RATE_LIMITER_WINDOW_MS}
+      - REDIS_EX_S=${REDIS_EX_S}
+      - REDIS_URL=redis://redis:6379
+      - SPEED_LIMITER_DELAY_AFTER=${SPEED_LIMITER_DELAY_AFTER}
+      - SPEED_LIMITER_DELAY_MS=${SPEED_LIMITER_DELAY_MS}
+      - SPEED_LIMITER_WINDOW_MS=${SPEED_LIMITER_WINDOW_MS}
+
+  postgres:
+    image: postgres:15
+    container_name: postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment: 
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+
+  redis:
+    image: redis:latest
+    container_name: redis_cache
+    restart: always
+    ports:
+      - "6379:6379"

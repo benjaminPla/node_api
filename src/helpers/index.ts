@@ -48,7 +48,7 @@ let redisClient: ReturnType<typeof createClient> | null = null;
 export const getRedisClient = async () => {
   if (!redisClient) {
     try {
-      redisClient = createClient();
+      redisClient = createClient({ url: getEnvVar("REDIS_URL") });
       await redisClient.connect();
       console.log("redis connection succeeded");
     } catch (error) {
