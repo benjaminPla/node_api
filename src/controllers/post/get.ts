@@ -7,11 +7,13 @@ const postGet = async (_req: Request, res: Response): Promise<any> => {
     const redis = await getRedisClient();
     const cachedPosts = await redis.get("posts");
     if (cachedPosts) {
-        console.log('from redis')
       return res.status(200).send([JSON.parse(cachedPosts)]);
     }
 
     const posts = await Post.findAll();
+    if (!posts.length) {
+      return res.sendStatus(404);
+    }
 
     await redis.set("posts", JSON.stringify(posts), {
       EX: parseInt(getEnvVar("REDIS_EX_S"), 10),
