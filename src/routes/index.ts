@@ -5,6 +5,7 @@ import checkReq from "../middlewares/checkReq";
 import checkValidId from "../middlewares/checkValidId";
 import express from "express";
 import health from "../controllers/health";
+import postDelete from "../controllers/post/delete";
 import postGet from "../controllers/post/get";
 import postPost from "../controllers/post/post";
 import postPut from "../controllers/post/put";
@@ -32,6 +33,13 @@ router.post(
   userCreate,
 );
 
+router.delete(
+  "/post/:id",
+  authenticateToken,
+  checkReq(["params", "params.id"]),
+  checkValidId,
+  postDelete,
+);
 router.get("/post", postGet);
 router.post(
   "/post",

@@ -11,6 +11,7 @@ const postPut = async (req: Request, res: Response): Promise<any> => {
     if (!post) {
       return res.sendStatus(404);
     }
+
     if (post.user_id !== req.user!.id) {
       return res.sendStatus(403);
     }
@@ -20,7 +21,7 @@ const postPut = async (req: Request, res: Response): Promise<any> => {
     const redis = await getRedisClient();
     redis.del("posts");
 
-    return res.sendStatus(204);
+    return res.status(200).send(post);
   } catch (error: any) {
     console.error(`error \`postPost\`: ${error} `);
     return res.sendStatus(500);
