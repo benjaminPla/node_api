@@ -1,3 +1,4 @@
+import { createClient } from "redis";
 import rateLimit from "express-rate-limit";
 import { Sequelize } from "sequelize";
 import { slowDown } from "express-slow-down";
@@ -43,3 +44,16 @@ export const speedLimiter = slowDown({
   windowMs: parseInt(getEnvVar("SPEED_LIMITER_WINDOW_MS"), 10),
 });
 
+let redisClient: ReturnType<typeof createClient> | null = null;
+export const getRedisClient = async () => {
+  if (!redisClient) {
+    try {
+      redisClient = createClient();
+      await redisClient.connect();
+      console.log("redis connection succeeded");
+    } catch (error) {
+      throw new Error(`redis connection failed: ${error}`);
+    }
+  }
+  return redisClient;
+};
