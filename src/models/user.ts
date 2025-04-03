@@ -43,6 +43,7 @@ User.init(
     sequelize,
     tableName: "users",
     timestamps: true,
+    version: true,
   },
 );
 

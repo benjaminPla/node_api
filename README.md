@@ -128,3 +128,5 @@ docker run -d \
 - [ ] sessionId
 - [x] role middleware
 - [ ] modularize helpers
+- [ ] sequelize pool
+- [x] optimistic locking
