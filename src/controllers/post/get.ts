@@ -7,7 +7,7 @@ const postGet = async (_req: Request, res: Response): Promise<any> => {
     const redis = await getRedisClient();
     const cachedPosts = await redis.get("posts");
     if (cachedPosts) {
-      return res.status(200).send([JSON.parse(cachedPosts)]);
+      return res.status(200).send(JSON.parse(cachedPosts));
     }
 
     const posts = await Post.findAll();

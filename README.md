@@ -1,4 +1,78 @@
-# WIP
+# rindus
+
+## Overview
+
+This API is built with Node.js, Express, PostgreSQL, Sequelize, and Redis. It includes:
+
+- User management with roles (admin, client).
+- Authentication via JWT and bcrypt for password hashing.
+- Rate limiting and basic security measures to mitigate bot attacks.
+- Fully documented and tested using Postman.
+- Dockerized with Docker and Docker Compose, ready to run with PostgreSQL and Redis containers.
+
+Aimed to showcase my skills with minimal code (limited time!).
+
+## structure
+
+```
+.
+├── build
+│   └── src
+│       ├── controllers
+│       │   ├── health.js
+│       │   └── user
+│       │       ├── create.js
+│       │       └── get.js
+│       ├── helpers
+│       │   └── index.js
+│       ├── index.js
+│       └── routes
+│           └── index.js
+├── package.json
+├── package-lock.json
+├── posts.sql
+├── README.md
+├── src
+│   ├── controllers
+│   │   ├── authentication
+│   │   │   └── authenticate.ts
+│   │   ├── health.ts
+│   │   ├── post
+│   │   │   └── get.ts
+│   │   └── user
+│   │       ├── create.ts
+│   │       └── get.ts
+│   ├── extended.d.ts
+│   ├── helpers
+│   │   ├── index.ts
+│   │   └── syncAndPopulateDb.ts
+│   ├── index.ts
+│   ├── middlewares
+│   │   ├── authenticateToken.ts
+│   │   ├── checkAdmin.ts
+│   │   └── checkReq.ts
+│   ├── models
+│   │   ├── post.ts
+│   │   └── user.ts
+│   └── routes
+│       └── index.ts
+└── tsconfig.json
+```
+
+## how to run it
+
+### docker
+
+wip
+
+### local
+
+1. clone the repo
+2. `npm run build`
+3. `npm run start`
+4. test the api using any http client, follow postman documentation
+
+# notes
 
 ```
 docker run -d \
@@ -15,19 +89,17 @@ docker run -d \
 
 ## todo
 
-this is a todo list in readme, it's not ok to put it here but it's only for me, it will be updated in the future
-
-- saml, oauth
-- docker
-  <!-- - roles -->
-  <!-- - rate limiter + slown down -->
-  <!-- - middlewares -->
-<!-- - cache -->
-<!-- - fk -->
-- soft delete
-<!-- - jwt -->
-- test
-- refresh token
-- sessionId
-<!-- - role middleware -->
-- modulize helpers
+- [ ] saml || oauth
+- [ ] docker
+- [x] roles
+- [x] rate limiter + slow down
+- [x] middlewares
+- [x] cache
+- [x] fk
+- [ ] soft delete
+- [ ] jwt
+- [ ] test
+- [ ] refresh token
+- [ ] sessionId
+- [x] role middleware
+- [ ] modularize helpers

@@ -2,7 +2,6 @@ import authenticate from "../controllers/authentication/authenticate";
 import authenticateToken from "../middlewares/authenticateToken";
 import checkAdmin from "../middlewares/checkAdmin";
 import checkReq from "../middlewares/checkReq";
-import postDelete from "../controllers/post/delete";
 import express from "express";
 import health from "../controllers/health";
 import postGet from "../controllers/post/get";
@@ -28,7 +27,6 @@ router.post(
   userCreate,
 );
 
-router.delete("/post/:id", postDelete);
 router.get("/post", postGet);
 
 export default router;

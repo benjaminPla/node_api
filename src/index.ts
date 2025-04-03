@@ -5,13 +5,15 @@ import {
   rateLimiter,
   speedLimiter,
 } from "./helpers";
-import { syncAndPopulateDb } from "./helpers/syncAndPopulateDb";
 import express from "express";
+import helmet from "helmet";
 import router from "./routes";
+import { syncAndPopulateDb } from "./helpers/syncAndPopulateDb";
 
 const app = express();
 
 app.use(express.json());
+app.use(helmet());
 app.use(rateLimiter);
 app.use(speedLimiter);
 app.use(router);
