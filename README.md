@@ -113,7 +113,8 @@ docker run -d --name redis -p 6379:6379 redis
 ```
 
 4. run `npm run build && npm run start`
-5. call the api with any http client following the documentation
+5. sync and populate the db hitting one `syncDb` enpoint, this will create an admin user accoding the _.env_ vars _(this is a bad practice and of course unsecured but I had no more time really)_
+6. call the api with any http client following the documentation
 
 ### docker
 
@@ -139,7 +140,3 @@ docker run -d --name redis -p 6379:6379 redis
 - [ ] sequelize pool
 - [x] optimistic locking
 - [x] documentation
-
-```
-
-```

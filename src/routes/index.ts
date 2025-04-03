@@ -10,8 +10,8 @@ import postGet from "../controllers/post/get";
 import postPost from "../controllers/post/post";
 import postPut from "../controllers/post/put";
 import syncDb from "../controllers/syncDb";
-import userCreate from "../controllers/user/create";
 import userGet from "../controllers/user/get";
+import userPost from "../controllers/user/post";
 
 const router = express.Router();
 
@@ -30,7 +30,7 @@ router.post(
   authenticateToken,
   checkAdmin,
   checkReq(["body", "body.email", "body.password"]),
-  userCreate,
+  userPost,
 );
 
 router.delete(
