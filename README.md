@@ -133,10 +133,11 @@ docker run -d --name redis -p 6379:6379 redis
 - [x] fk
 - [ ] soft delete
 - [x] jwt
-- [ ] test
+- [x] test
 - [ ] refresh token
 - [ ] sessionId
 - [x] role middleware
 - [ ] sequelize pool
 - [x] optimistic locking
 - [x] documentation
+- [ ] modulize router
