@@ -118,7 +118,7 @@ docker run -d --name redis -p 6379:6379 redis
 
 ### docker
 
-1. run `docker-compose run`
+1. run `docker-compose up`
 2. sync and populate the db hitting one `syncDb` enpoint, this will create an admin user accoding the _.env_ vars _(this is a bad practice and of course unsecured but I had no more time really)_
 3. call the api with any http client following the documentation
 
